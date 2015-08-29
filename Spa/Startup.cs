@@ -1,6 +1,7 @@
 ﻿using Owin;
 using System.Web.Http;
 using Microsoft.Owin;
+using Microsoft.Owin.Cors;
 
 [assembly: OwinStartup(typeof(Spa.Startup))]
 
@@ -16,7 +17,9 @@ namespace Spa
 
             ConfigureWebApi(httpConfig);
 
-            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+            ConfigureDi(httpConfig);
+
+            app.UseCors(CorsOptions.AllowAll);
 
             app.UseWebApi(httpConfig);
         }

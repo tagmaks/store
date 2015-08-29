@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using System.Web.Http;
 using GenericLibsBase;
@@ -11,7 +8,7 @@ using GenericServices.Core;
 using GenericServices.Services;
 using GenericServices.ServicesAsync;
 
-namespace Spa.Data.Infrastructure
+namespace Spa.Infrastructure
 {
     public class SpaRepository<TEntity, TDto, TDtoAsync> : ISpaRepository<TEntity, TDto, TDtoAsync>
         where TEntity : class, new()
@@ -25,52 +22,6 @@ namespace Spa.Data.Infrastructure
             _db = context;
         }
 
-        #region Old methods
-        public bool EntityExists(int key)
-        {
-            return _db.Set<TEntity>().Find(key) != null;
-        }
-
-        public IQueryable<TEntity> GetAllOld()
-        {
-            return _db.Set<TEntity>();
-        }
-
-        public SingleResult<TEntity> GetOld(Func<TEntity, bool> predicate)
-        {
-            var entity = _db.Set<TEntity>().Where(predicate).AsQueryable();
-
-            return SingleResult.Create(entity);
-        }
-
-        public async Task<TEntity> GetAsyncOld(int key)
-        {
-            return await _db.Set<TEntity>().FindAsync(key);
-        }
-
-        public async Task<int> PostAsyncOld(TEntity entity)
-        {
-            _db.Set<TEntity>().Add(entity);
-            return await _db.SaveChangesAsync();
-        }
-
-        public async Task<int> PatchAsyncOld()
-        {
-            return await _db.SaveChangesAsync();
-        }
-
-        public async Task<int> PutAsyncOld(TEntity update)
-        {
-            //_db.Entry(update).State = EntityState.Modified;
-            return await _db.SaveChangesAsync();
-        }
-
-        public async Task<int> DeleteAsyncOld(TEntity entity)
-        {
-            _db.Set<TEntity>().Remove(entity);
-            return await _db.SaveChangesAsync();
-        }
-        #endregion
 
         #region Service fields for property injections with <TEntity> generic
         public IListService<TEntity> ListService { get; set; }

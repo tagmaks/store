@@ -43,6 +43,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.0\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Integration.WebApi, Version=3.4.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.WebApi2.3.4.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="AutoMapper, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
       <Private>True</Private>
@@ -201,6 +209,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\Startup.Di.cs" />
     <Compile Include="App_Start\Startup.WebApi.cs" />
     <Compile Include="Dtos\CustomerGroupDto.cs" />
     <Compile Include="Dtos\CustomerGroupDtoAsync.cs" />
@@ -221,8 +230,10 @@
     <Compile Include="Infrastructure\AppDbContext.cs" />
     <Compile Include="Infrastructure\AppUserManager.cs" />
     <Compile Include="Infrastructure\IdentityModels.cs" />
+    <Compile Include="Infrastructure\ISpaRepository.Generic.cs" />
     <Compile Include="Infrastructure\SpaCreateDatabaseIfNotExists.cs" />
     <Compile Include="Infrastructure\SpaDataSeeder.cs" />
+    <Compile Include="Infrastructure\SpaRepository.Generic.cs" />
     <Compile Include="Infrastructure\User.cs" />
     <Compile Include="Mappers\CategoryMapper.cs" />
     <Compile Include="Mappers\CustomerGroupMapper.cs" />

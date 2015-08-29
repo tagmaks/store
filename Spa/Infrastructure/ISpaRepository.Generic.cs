@@ -8,24 +8,13 @@ using GenericServices.Core;
 using GenericServices.Services;
 using GenericServices.ServicesAsync;
 
-namespace Spa.Data.Infrastructure
+namespace Spa.Infrastructure
 {
     public interface ISpaRepository<TEntity, TDto, TDtoAsync>
         where TEntity : class, new()
         where TDto : EfGenericDto<TEntity, TDto>, new()
         where TDtoAsync : EfGenericDtoAsync<TEntity, TDtoAsync>, new()
     {
-
-        #region Old methods
-        bool EntityExists(int key);
-        IQueryable<TEntity> GetAllOld();
-        SingleResult<TEntity> GetOld(Func<TEntity, bool> predicate);
-        Task<TEntity> GetAsyncOld(int key);
-        Task<int> PostAsyncOld(TEntity entity);
-        Task<int> PatchAsyncOld();
-        Task<int> PutAsyncOld(TEntity update);
-        Task<int> DeleteAsyncOld(TEntity entity);
-        #endregion
 
         #region Service fields for property injections with <TEntity> generic
         IListService<TEntity> ListService { get; set; }
