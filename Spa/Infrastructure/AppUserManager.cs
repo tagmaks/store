@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
+using Spa.Services;
 
 namespace Spa.Infrastructure
 {
@@ -33,7 +35,21 @@ namespace Spa.Infrastructure
                 RequireUppercase = true,
             };
 
+            // Configure Email service
+            appUserManager.EmailService = new EmailService();
+
+            var dataProtectionProvider = options.DataProtectionProvider;
+            if (dataProtectionProvider != null)
+            {
+                appUserManager.UserTokenProvider = new DataProtectorTokenProvider<User, int>(dataProtectionProvider.Create("ASP.NET Identity"))
+                {
+                    //Code for email confirmation and reset password life time
+                    TokenLifespan = TimeSpan.FromHours(6)
+                };
+            }
+
             return appUserManager;
         }
+
     }
 }

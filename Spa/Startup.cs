@@ -13,11 +13,15 @@ namespace Spa
         {
             HttpConfiguration httpConfig = new HttpConfiguration();
 
-            ConfigurationOAuthTokenGeneration(app);
+            ConfigureOAuthTokenGeneration(app);
+
+            ConfigureOAuthTokenConsumption(app);
 
             ConfigureWebApi(httpConfig);
 
             ConfigureDi(httpConfig);
+
+            ConfigureOData(httpConfig);
 
             app.UseCors(CorsOptions.AllowAll);
 

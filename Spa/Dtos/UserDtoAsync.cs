@@ -16,9 +16,6 @@ namespace Spa.Dtos
         public ICollection<Order> Orders { get; set; }
         public ICollection<Ratio> Ratios { get; set; }
 
-        protected override CrudFunctions SupportedFunctions
-        {
-            get { return CrudFunctions.List; }
-        }
+        protected override CrudFunctions SupportedFunctions => CrudFunctions.List;
     }
 }

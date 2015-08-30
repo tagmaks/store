@@ -8,48 +8,48 @@ namespace Spa.Mappers
     {
         public ProductMapper()
         {
-            this.ToTable("Products", "catalog");
+            ToTable("Products", "catalog");
 
-            this.HasKey(p => p.ProductId);
-            this.Property(p => p.ProductId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            this.Property(p => p.ProductId).IsRequired();
+            HasKey(p => p.ProductId);
+            Property(p => p.ProductId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            Property(p => p.ProductId).IsRequired();
 
-            this.Property(p => p.Name).IsRequired();
-            this.Property(p => p.Name).HasMaxLength(30);
+            Property(p => p.Name).IsRequired();
+            Property(p => p.Name).HasMaxLength(30);
 
-            this.Property(p => p.Price).IsRequired();
+            Property(p => p.Price).IsRequired();
 
-            this.Property(p => p.Ratio).IsOptional();
+            Property(p => p.Ratio).IsOptional();
 
-            this.Property(p => p.Discount).IsOptional();
+            Property(p => p.Discount).IsOptional();
 
-            this.Property(p => p.Weight).IsOptional();
+            Property(p => p.Weight).IsOptional();
 
-            this.Property(p => p.Size).IsOptional();
+            Property(p => p.Size).IsOptional();
 
-            this.Property(p => p.IsFreeShipping).IsOptional();
+            Property(p => p.IsFreeShipping).IsOptional();
 
-            this.Property(p => p.ItemSold).IsOptional();
+            Property(p => p.ItemSold).IsOptional();
 
-            this.Property(p => p.Enabled).IsOptional();
+            Property(p => p.Enabled).IsOptional();
 
-            this.Property(p => p.ShortDescription).IsRequired();
+            Property(p => p.ShortDescription).IsRequired();
 
-            this.Property(p => p.Description).IsRequired();
+            Property(p => p.Description).IsRequired();
 
-            this.Property(p => p.DateAdded).IsOptional();
-            this.Property(p => p.DateAdded).HasColumnType("smalldatetime");
+            Property(p => p.DateAdded).IsOptional();
+            Property(p => p.DateAdded).HasColumnType("smalldatetime");
 
-            this.Property(p => p.DateModified).IsOptional();
-            this.Property(p => p.DateModified).HasColumnType("smalldatetime");
+            Property(p => p.DateModified).IsOptional();
+            Property(p => p.DateModified).HasColumnType("smalldatetime");
 
-            this.Property(p => p.Recomended).IsOptional();
+            Property(p => p.Recomended).IsOptional();
 
-            this.Property(p => p.New).IsOptional();
+            Property(p => p.New).IsOptional();
 
-            this.Property(p => p.OnSale).IsOptional();
+            Property(p => p.OnSale).IsOptional();
 
-            this.HasMany(p => p.Categories).WithMany(c => c.Products).Map(m =>
+            HasMany(p => p.Categories).WithMany(c => c.Products).Map(m =>
                 {
                     m.ToTable("ProductCategories");
                     m.MapLeftKey("ProductId");

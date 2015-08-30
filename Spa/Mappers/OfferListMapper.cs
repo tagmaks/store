@@ -8,17 +8,17 @@ namespace Spa.Mappers
     {
         public OfferListMapper()
         {
-            this.ToTable("OfferLists");
+            ToTable("OfferLists");
 
-            this.HasKey(ol => ol.OfferListId);
-            this.Property(ol => ol.OfferListId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            this.Property(ol => ol.OfferListId).IsRequired();
+            HasKey(ol => ol.OfferListId);
+            Property(ol => ol.OfferListId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            Property(ol => ol.OfferListId).IsRequired();
 
-            this.Property(ol => ol.StartDate).IsRequired();
-            this.Property(ol => ol.StartDate).HasColumnType("smalldatetime");
+            Property(ol => ol.StartDate).IsRequired();
+            Property(ol => ol.StartDate).HasColumnType("smalldatetime");
 
-            this.Property(ol => ol.EndDate).IsRequired();
-            this.Property(ol => ol.EndDate).HasColumnType("smalldatetime");
+            Property(ol => ol.EndDate).IsRequired();
+            Property(ol => ol.EndDate).HasColumnType("smalldatetime");
         }
     }
 }

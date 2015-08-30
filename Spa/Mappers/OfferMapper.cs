@@ -8,20 +8,20 @@ namespace Spa.Mappers
     {
         public OfferMapper()
         {
-            this.ToTable("Offers");
+            ToTable("Offers");
 
-            this.HasKey(o => o.OfferId);
-            this.Property(o => o.OfferId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            this.Property(o => o.OfferId).IsRequired();
+            HasKey(o => o.OfferId);
+            Property(o => o.OfferId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            Property(o => o.OfferId).IsRequired();
 
-            this.Property(o => o.Amount).IsRequired();
+            Property(o => o.Amount).IsRequired();
 
-            this.Property(o => o.Price).IsRequired();
+            Property(o => o.Price).IsRequired();
 
-            this.Property(o => o.ShipPrice).IsRequired();
+            Property(o => o.ShipPrice).IsRequired();
 
-            this.HasRequired(o => o.Product).WithMany(p => p.Offers).Map(p => p.MapKey("ProductId"));
-            this.HasRequired(o => o.OfferList).WithMany(ol => ol.Offers).Map(ol => ol.MapKey("OfferListId"));
+            HasRequired(o => o.Product).WithMany(p => p.Offers).Map(p => p.MapKey("ProductId"));
+            HasRequired(o => o.OfferList).WithMany(ol => ol.Offers).Map(ol => ol.MapKey("OfferListId"));
         }
     }
 }

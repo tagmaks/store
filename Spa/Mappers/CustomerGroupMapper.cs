@@ -8,18 +8,18 @@ namespace Spa.Mappers
     {
         public CustomerGroupMapper()
         {
-            this.ToTable("CustomerGroups");
+            ToTable("CustomerGroups");
 
-            this.HasKey(cg => cg.CustomerGroupId);
-            this.Property(cg => cg.CustomerGroupId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            this.Property(cg => cg.CustomerGroupId).IsRequired();
+            HasKey(cg => cg.CustomerGroupId);
+            Property(cg => cg.CustomerGroupId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            Property(cg => cg.CustomerGroupId).IsRequired();
 
-            this.Property(cg => cg.GroupName).IsRequired();
-            this.Property(cg => cg.GroupName).HasMaxLength(30);
+            Property(cg => cg.GroupName).IsRequired();
+            Property(cg => cg.GroupName).HasMaxLength(30);
 
-            this.Property(cg => cg.Discount).IsOptional();
+            Property(cg => cg.Discount).IsOptional();
 
-            this.HasOptional(cg => cg.OfferList).WithMany(of => of.CustomerGroups).Map(of => of.MapKey("OfferListId"));
+            HasOptional(cg => cg.OfferList).WithMany(of => of.CustomerGroups).Map(of => of.MapKey("OfferListId"));
         }
     }
 }

@@ -8,19 +8,19 @@ namespace Spa.Mappers
     {
         public ProductVideoMapper()
         {
-            this.ToTable("ProductVideo");
+            ToTable("ProductVideo");
 
-            this.HasKey(pv => pv.ProductVideoId);
-            this.Property(pv => pv.ProductVideoId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            this.Property(pv => pv.ProductVideoId).IsRequired();
+            HasKey(pv => pv.ProductVideoId);
+            Property(pv => pv.ProductVideoId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            Property(pv => pv.ProductVideoId).IsRequired();
 
-            this.Property(pv => pv.Name).IsRequired();
-            this.Property(pv => pv.Name).HasMaxLength(30);
+            Property(pv => pv.Name).IsRequired();
+            Property(pv => pv.Name).HasMaxLength(30);
 
-            this.Property(pv => pv.Description).IsRequired();
-            this.Property(pv => pv.Description).HasMaxLength(50);
+            Property(pv => pv.Description).IsRequired();
+            Property(pv => pv.Description).HasMaxLength(50);
 
-            this.HasRequired(pv => pv.Product).WithMany(p => p.ProductVideos).Map(p => p.MapKey("ProductId"));
+            HasRequired(pv => pv.Product).WithMany(p => p.ProductVideos).Map(p => p.MapKey("ProductId"));
         }
     }
 }

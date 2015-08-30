@@ -8,16 +8,16 @@ namespace Spa.Mappers
     {
         public OrderItemMapper()
         {
-            this.ToTable("OrderItems");
+            ToTable("OrderItems");
 
-            this.HasKey(oi => oi.OrderItemId);
-            this.Property(oi => oi.OrderItemId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            this.Property(oi => oi.OrderItemId).IsRequired();
+            HasKey(oi => oi.OrderItemId);
+            Property(oi => oi.OrderItemId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            Property(oi => oi.OrderItemId).IsRequired();
 
-            this.Property(oi => oi.Amount).IsRequired();
+            Property(oi => oi.Amount).IsRequired();
 
-            this.HasRequired(oi => oi.Order).WithMany(o => o.OrderItems).Map(o => o.MapKey("OrderId"));
-            this.HasRequired(oi => oi.Product).WithMany(p => p.OrderItems).Map(o => o.MapKey("ProductId"));
+            HasRequired(oi => oi.Order).WithMany(o => o.OrderItems).Map(o => o.MapKey("OrderId"));
+            HasRequired(oi => oi.Product).WithMany(p => p.OrderItems).Map(o => o.MapKey("ProductId"));
         }
     }
 }

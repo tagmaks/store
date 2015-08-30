@@ -8,27 +8,27 @@ namespace Spa.Mappers
     {
         public ProductPhotoMapper()
         {
-            this.ToTable("ProductPhotos");
+            ToTable("ProductPhotos");
 
-            this.HasKey(pp => pp.ProductPhotoId);
-            this.Property(pp => pp.ProductPhotoId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            this.Property(pp => pp.ProductPhotoId).IsRequired();
+            HasKey(pp => pp.ProductPhotoId);
+            Property(pp => pp.ProductPhotoId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            Property(pp => pp.ProductPhotoId).IsRequired();
 
-            this.Property(pp => pp.PhotoName).IsRequired();
-            this.Property(pp => pp.PhotoName).HasMaxLength(30);
+            Property(pp => pp.PhotoName).IsRequired();
+            Property(pp => pp.PhotoName).HasMaxLength(30);
 
-            this.Property(pp => pp.Description).IsRequired();
-            this.Property(pp => pp.Description).HasMaxLength(50);
+            Property(pp => pp.Description).IsRequired();
+            Property(pp => pp.Description).HasMaxLength(50);
 
-            this.Property(pp => pp.Main).IsOptional();
+            Property(pp => pp.Main).IsOptional();
 
-            this.Property(pp => pp.OriginName).IsRequired();
-            this.Property(pp => pp.OriginName).HasMaxLength(50);
+            Property(pp => pp.OriginName).IsRequired();
+            Property(pp => pp.OriginName).HasMaxLength(50);
 
-            this.Property(pp => pp.ModifiedDate).IsOptional();
-            this.Property(pp => pp.ModifiedDate).HasColumnType("smalldatetime");
+            Property(pp => pp.ModifiedDate).IsOptional();
+            Property(pp => pp.ModifiedDate).HasColumnType("smalldatetime");
 
-            this.HasRequired(pp => pp.Product).WithMany(p => p.ProductPhotos).Map(p => p.MapKey("ProductId"));
+            HasRequired(pp => pp.Product).WithMany(p => p.ProductPhotos).Map(p => p.MapKey("ProductId"));
         }
     }
 }

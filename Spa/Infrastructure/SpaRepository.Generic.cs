@@ -1,7 +1,5 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using System.Web.Http;
 using GenericLibsBase;
 using GenericServices;
 using GenericServices.Core;
@@ -15,13 +13,6 @@ namespace Spa.Infrastructure
         where TDto : EfGenericDto<TEntity, TDto>, new()
         where TDtoAsync : EfGenericDtoAsync<TEntity, TDtoAsync>, new()
     {
-        private readonly IGenericServicesDbContext _db;
-
-        public SpaRepository(IGenericServicesDbContext context)
-        {
-            _db = context;
-        }
-
 
         #region Service fields for property injections with <TEntity> generic
         public IListService<TEntity> ListService { get; set; }

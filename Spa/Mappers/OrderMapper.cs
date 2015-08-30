@@ -8,29 +8,29 @@ namespace Spa.Mappers
     {
         public OrderMapper()
         {
-            this.ToTable("Orders");
+            ToTable("Orders");
 
-            this.HasKey(o => o.OrderId);
-            this.Property(o => o.OrderId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            this.Property(o => o.OrderId).IsRequired();
+            HasKey(o => o.OrderId);
+            Property(o => o.OrderId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            Property(o => o.OrderId).IsRequired();
 
-            this.Property(o => o.OrderDiscount).IsOptional();
+            Property(o => o.OrderDiscount).IsOptional();
 
-            this.Property(o => o.OrderDate).IsOptional();
-            this.Property(o => o.OrderDate).HasColumnType("smalldatetime");
+            Property(o => o.OrderDate).IsOptional();
+            Property(o => o.OrderDate).HasColumnType("smalldatetime");
 
-            this.Property(o => o.PaymentDate).IsOptional();
-            this.Property(o => o.PaymentDate).HasColumnType("smalldatetime");
+            Property(o => o.PaymentDate).IsOptional();
+            Property(o => o.PaymentDate).HasColumnType("smalldatetime");
 
-            this.Property(o => o.CustomerComment).IsOptional();
-            this.Property(o => o.CustomerComment).HasMaxLength(255);
+            Property(o => o.CustomerComment).IsOptional();
+            Property(o => o.CustomerComment).HasMaxLength(255);
 
-            this.Property(o => o.AdminOrderComment).IsOptional();
-            this.Property(o => o.AdminOrderComment).HasMaxLength(255);
+            Property(o => o.AdminOrderComment).IsOptional();
+            Property(o => o.AdminOrderComment).HasMaxLength(255);
 
-            this.Property(o => o.ShippingCost).IsRequired();
+            Property(o => o.ShippingCost).IsRequired();
 
-            this.HasRequired(o => o.Customer).WithMany(c => c.Orders).Map(c => c.MapKey("CustomerId"));
+            HasRequired(o => o.Customer).WithMany(c => c.Orders).Map(c => c.MapKey("CustomerId"));
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Spa.Infrastructure
             _ctx = ctx;
         }
 
-        static readonly string[] customerNames = 
+        static readonly string[] CustomerNames = 
         { 
             "Taiseer,Joudeh,Male,hotmail.com", 
             "Hasan,Ahmad,Male,mymail.com", 
@@ -69,7 +69,7 @@ namespace Spa.Infrastructure
                 };
                 _ctx.CustomerGroups.Add(group);
 
-                foreach (var customerName in customerNames)
+                foreach (var customerName in CustomerNames)
                 {
                     var nameGenderMail = SplitValue(customerName);
                     var user = new User()

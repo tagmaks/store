@@ -13,9 +13,6 @@ namespace Spa.Dtos
         public OfferList OfferList { get; set; }
         public ICollection<User> Customers { get; set; }
 
-        protected override CrudFunctions SupportedFunctions
-        {
-            get { return CrudFunctions.List; }
-        }
+        protected override CrudFunctions SupportedFunctions => CrudFunctions.List;
     }
 }

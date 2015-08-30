@@ -8,19 +8,19 @@ namespace Spa.Mappers
     {
         public RatioMapper()
         {
-            this.ToTable("Ratios");
+            ToTable("Ratios");
 
-            this.HasKey(r => r.RatioId);
-            this.Property(r => r.RatioId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            this.Property(r => r.RatioId).IsRequired();
+            HasKey(r => r.RatioId);
+            Property(r => r.RatioId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            Property(r => r.RatioId).IsRequired();
 
-            this.Property(r => r.ProductRatio).IsRequired();
+            Property(r => r.ProductRatio).IsRequired();
 
-            this.Property(r => r.AddDate).IsOptional();
-            this.Property(r => r.AddDate).HasColumnType("smalldatetime");
+            Property(r => r.AddDate).IsOptional();
+            Property(r => r.AddDate).HasColumnType("smalldatetime");
 
-            this.HasRequired(r => r.Product).WithMany(p => p.Ratios).Map(p => p.MapKey("ProductId"));
-            this.HasRequired(r => r.Customer).WithMany(c => c.Ratios).Map(p => p.MapKey("CustomerId"));
+            HasRequired(r => r.Product).WithMany(p => p.Ratios).Map(p => p.MapKey("ProductId"));
+            HasRequired(r => r.Customer).WithMany(c => c.Ratios).Map(p => p.MapKey("CustomerId"));
         }
     }
 }

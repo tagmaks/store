@@ -8,25 +8,25 @@ namespace Spa.Mappers
     {
         public CategoryMapper()
         {
-            this.ToTable("Categories");
+            ToTable("Categories");
 
-            this.HasKey(c => c.CategoryId);
-            this.Property(c => c.CategoryId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            this.Property(c => c.CategoryId).IsRequired();
+            HasKey(c => c.CategoryId);
+            Property(c => c.CategoryId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            Property(c => c.CategoryId).IsRequired();
 
-            this.Property(c => c.Name).IsRequired();
-            this.Property(c => c.Name).HasMaxLength(30);
+            Property(c => c.Name).IsRequired();
+            Property(c => c.Name).HasMaxLength(30);
 
-            this.Property(c => c.Description).IsOptional();
-            this.Property(c => c.Description).HasMaxLength(100);
+            Property(c => c.Description).IsOptional();
+            Property(c => c.Description).HasMaxLength(100);
 
-            this.Property(c => c.Picture).IsOptional();
-            this.Property(c => c.Picture).HasMaxLength(100);
+            Property(c => c.Picture).IsOptional();
+            Property(c => c.Picture).HasMaxLength(100);
 
-            this.Property(c => c.MiniPicture).IsOptional();
-            this.Property(c => c.MiniPicture).HasMaxLength(100);
+            Property(c => c.MiniPicture).IsOptional();
+            Property(c => c.MiniPicture).HasMaxLength(100);
 
-            this.Property(c => c.Enabled).IsOptional();
+            Property(c => c.Enabled).IsOptional();
         }
     }
 }
