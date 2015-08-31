@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
+﻿using System.Configuration;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
-using System.Web;
 using Microsoft.AspNet.Identity;
 using SendGrid;
 
@@ -14,6 +10,11 @@ namespace Spa.Services
     public class EmailService : IIdentityMessageService
     {
         public async Task SendAsync(IdentityMessage message)
+        {
+            await ConfigSendGridasync(message);
+        }
+
+        public async Task ConfigSendGridasync(IdentityMessage message)
         {
             var myMessage = new SendGridMessage();
 

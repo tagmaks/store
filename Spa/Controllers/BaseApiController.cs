@@ -8,11 +8,13 @@ namespace Spa.Controllers
 {
     public class BaseApiController : ApiController
     {
-        protected readonly AppUserManager AppUserManager;
+        private readonly AppUserManager _appUserManager;
+
+        protected AppUserManager AppUserManager => _appUserManager ?? Request.GetOwinContext().GetUserManager<AppUserManager>();
 
         public BaseApiController()
         {
-            AppUserManager = Request.GetOwinContext().GetUserManager<AppUserManager>();
+            //AppUserManager = Request.GetOwinContext().GetUserManager<AppUserManager>();
         }
 
         protected IHttpActionResult GetErrorResult(IdentityResult result)
@@ -26,7 +28,7 @@ namespace Spa.Controllers
             {
                 if (result.Errors != null)
                 {
-                    foreach (string error in result.Errors)
+                    foreach (var error in result.Errors)
                     {
                         ModelState.AddModelError("", error);
                     }

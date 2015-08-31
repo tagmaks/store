@@ -8,6 +8,7 @@ using Spa.Infrastructure;
 
 namespace Spa.Controllers
 {
+    [RoutePrefix("api/accounts")]
     public class AccountsController : BaseApiController
     {
         [Authorize]
@@ -35,42 +36,42 @@ namespace Spa.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<IHttpActionResult> CreateUser(User customer)
+        [Route("create")]
+        public async Task<IHttpActionResult> CreateUser(NewUserDto userDto)
         {
-            if (customer == null)
+            if (!ModelState.IsValid)
             {
-                return BadRequest();
-            }
-
-            IdentityResult addUserResult = await AppUserManager.CreateAsync(customer, customer.PasswordHash);
-
-            if (!addUserResult.Succeeded)
-            {
-                if (addUserResult.Errors != null)
-                {
-                    foreach (string error in addUserResult.Errors)
-                    {
-                        ModelState.AddModelError("", error);
-                    }
-                }
-
-                if (ModelState.IsValid)
-                {
-                    // No ModelState errors are available to send, so just return an empty BadRequest.
-                    return BadRequest();
-                }
-
                 return BadRequest(ModelState);
             }
 
+            User user = new User()
+            {
+                UserName = userDto.UserName,
+                FirstName = userDto.FirstName,
+                LastName = userDto.LastName,
+                Email = userDto.Email,
+                SubscribedNews = userDto.SubscribedNews
+            };
+
+            //Mapper.Map(userDto, user);
+
+            IdentityResult result = await AppUserManager.CreateAsync(user, userDto.Password);
+
+            if (!result.Succeeded)
+            {
+                return GetErrorResult(result);
+            }
+
+            user = await AppUserManager.FindByEmailAsync(user.Email);
+
             //Rest of code is removed for brevity
-            string code = await AppUserManager.GenerateEmailConfirmationTokenAsync(customer.Id);
-            var callbackUrl = new Uri(Url.Link("ConfirmEmailRoute", new { userId = customer.Id, password = customer.PasswordHash, code = code }));
-            await AppUserManager.SendEmailAsync(customer.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+            string code = await AppUserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            var callbackUrl = new Uri(Url.Link("ConfirmEmailRoute", new { userId = user.Id, password = user.PasswordHash, code = code }));
+            await AppUserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-            Uri locationHeader = new Uri(Url.Link("GetByUserId", new {id = customer.Id}));
+            Uri locationHeader = new Uri(Url.Link("GetByUserId", new {id = user.Id}));
 
-            return Created(locationHeader, customer);
+            return Created(locationHeader, userDto);
         }
 
         [AllowAnonymous]
@@ -119,7 +120,7 @@ namespace Spa.Controllers
                 return GetErrorResult(result);
             }
 
-            return Ok();
+            return Ok("Password changed successfully");
         }
     }
 }

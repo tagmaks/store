@@ -1,8 +1,6 @@
 ﻿using System.Net.Http;
-using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.OData;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Spa.Dtos;
 using Spa.Infrastructure;

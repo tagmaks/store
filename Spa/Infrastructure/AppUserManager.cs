@@ -22,15 +22,15 @@ namespace Spa.Infrastructure
             appUserManager.UserValidator = new UserValidator<User, int>(appUserManager)
             {
                 AllowOnlyAlphanumericUserNames = true,
-                RequireUniqueEmail = true
+                RequireUniqueEmail = false //TODO change to true
             };
 
             // Configure validation logic for passwords
             appUserManager.PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,
-                RequireNonLetterOrDigit = true,
-                RequireDigit = false,
+                RequireNonLetterOrDigit = false,
+                RequireDigit = true,
                 RequireLowercase = true,
                 RequireUppercase = true,
             };
